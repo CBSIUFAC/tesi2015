@@ -25,7 +25,7 @@ public class ModeloDAO extends MasterDAO{
 	}
 	
 	public List<Modelo> getListaModelo(){
-		return getLista("from Modelo m");
+		return getLista(Modelo.class, "from Modelo m");
 	}
 	
 	public List<Modelo> buscaModelo(String str){

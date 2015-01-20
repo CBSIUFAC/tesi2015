@@ -48,7 +48,7 @@ public class MasterDAO {
 	}
 	
 	//lista
-	public <T extends Serializable> List<T> getLista(String str){
+	public <T extends Serializable> List<T> getLista(Class<T> classe, String str){
 		Session s = getSession();
 		s.beginTransaction();
 		Query qr = s.createQuery(str);

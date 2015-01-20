@@ -11,23 +11,25 @@
 <ui:composition template="/template/principal.xhtml">
 	<ui:define name="content">
 		<h:body>
+		<h:form>
+				<p:commandButton id="btnAddMarca" value="Inserir Marca" action="#{marcaBean.prepararMarca}"
+					onclick="PF('dlgCadMarca').show()" update=":formCadMarca:desc"
+					process="@this">
+					<p:resetInput target=":formCadMarca:desc" />
+				</p:commandButton>
+		</h:form>
 			<h:form id="formCadMarca">
 				<p:dialog widgetVar="dlgCadMarca" modal="true">
-					<h:outputLabel value="Descrição:"></h:outputLabel>
-					<h:inputText id="desc" value="#{marcaBean.marca.descMarca}"></h:inputText>
-					<h:commandButton value="Inserir Marca"
-						action="#{marcaBean.inserirMarca}"></h:commandButton>
+					<p:outputLabel value="Descrição:"></p:outputLabel>
+					<p:inputText id="desc" value="#{marcaBean.marca.descMarca}"></p:inputText>
+					<p:commandButton value="Inserir Marca" update=":formListaMarca:tabelaMarca"
+						action="#{marcaBean.inserirMarca}" oncomplete="PF('dlgCadMarca').hide()"></p:commandButton>
 				</p:dialog>
 			</h:form>
 
 			<h:form id="formListaMarca">
-				<p:commandButton value="Inserir Marca"
-					onclick="PF('dlgCadMarca').show()" update=":formCadMarca:desc"
-					process="@this">
-					<p:resetInput target=":formCadMarca:desc"></p:resetInput>
-				</p:commandButton>
 				<p:growl id="msg" showDetail="true"></p:growl>
-				<p:dataTable var="m" value="#{marcaBean.listaMarcas}" rows="5"
+				<p:dataTable id="tabelaMarca" var="m" value="#{marcaBean.listaMarcas}" rows="5"
 					editable="true" paginator="true"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="5,10,15" filteredValue="#{marcaBean.filtroLista}">

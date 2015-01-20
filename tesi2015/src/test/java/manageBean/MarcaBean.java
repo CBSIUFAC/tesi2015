@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+
 import org.primefaces.event.RowEditEvent;
 
 import DAO.MarcaDAO;
@@ -16,6 +17,10 @@ import entity.Marca;
 public class MarcaBean {
 	private Marca marca;
 	private MarcaDAO marcaDAO = new MarcaDAO();
+	
+	public void prepararMarca(){
+		marca = new Marca();
+	}
 	
 	public String inserirMarca(){
 		marcaDAO.inserirMarca(marca);
